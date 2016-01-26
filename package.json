@@ -3,10 +3,13 @@
   "dependencies": {
     "babel-loader": "^6.2.1",
     "lodash": "^4.0.0",
+    "node-uuid": "^1.4.7",
     "phoenix": "file:deps/phoenix",
     "phoenix_html": "file:deps/phoenix_html",
     "react": "^0.14.6",
-    "react-dom": "^0.14.6"
+    "react-dom": "^0.14.6",
+    "react-redux": "^4.0.6",
+    "redux": "^3.0.6"
   },
   "devDependencies": {
     "babel-core": "^6.4.5",

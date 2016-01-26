@@ -23,7 +23,7 @@ module.exports = {
       __dirname + "/web/static/js"
     ],
     alias: {
-      views: __dirname + "/web/static/js/views",
+      utils: __dirname + "/web/static/js/utils",
       phoenix_html: __dirname + "/deps/phoenix_html/web/static/js/phoenix_html.js",
       phoenix: __dirname + "/deps/phoenix/web/static/js/phoenix.js"
     }
