@@ -10,7 +10,7 @@ module.exports = {
       loader: "babel",
       exclude: /node_modules/,
       query: {
-        presets: ["es2015"]
+        presets: ["react", "es2015", "stage-0"]
       }
     }, {
       test: /\.rt\.jade$/,
@@ -23,7 +23,7 @@ module.exports = {
       __dirname + "/web/static/js"
     ],
     alias: {
-      utils: __dirname + "/web/static/js/utils",
+      app: __dirname + "/web/static/js",
       phoenix_html: __dirname + "/deps/phoenix_html/web/static/js/phoenix_html.js",
       phoenix: __dirname + "/deps/phoenix/web/static/js/phoenix.js"
     }

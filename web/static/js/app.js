@@ -12,6 +12,10 @@ import Root from "containers/root"
 
 let store = createStore(retroRedux)
 
+let unsubscribe = store.subscribe(() =>
+  console.log(store.getState())
+)
+
 render(
   React.createElement(Provider, { store },
     React.createElement(Root)

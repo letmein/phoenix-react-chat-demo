@@ -1,12 +1,10 @@
 import { combineReducers } from "redux"
-import { CREATE_RETRO, INVITE_USER } from "./actions" 
-
-import * as uuid from "node-uuid"
+import { CREATE_RETRO, INVITE_USER } from "./actions"
 
 function retros(state = [], action) {
   switch (action.type) {
     case CREATE_RETRO:
-      return state.slice().push({ uuid: uuid.v1() })
+      return [...state, action.data]
     default:
       return state
   }

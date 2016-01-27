@@ -2,4 +2,7 @@ rt-require(dependency="react-router" as="{ Link }")
 
 div
   h1 Home Page!
-  Link(to="/") Go Home
+  p
+    Link(to="/") Home
+  p
+    button(onClick="{this.onButtonClick}") Create a retrospective
