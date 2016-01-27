@@ -1,10 +1,12 @@
 import { combineReducers } from "redux"
-import { CREATE_RETRO, INVITE_USER } from "./actions"
+import { List } from "immutable"
 
-function retros(state = [], action) {
+import { CREATE_RETRO, INVITE_USER } from "app/actions"
+
+function retros(state = List(), action) {
   switch (action.type) {
     case CREATE_RETRO:
-      return [...state, action.data]
+      return state.push(action.data)
     default:
       return state
   }

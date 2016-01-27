@@ -1,6 +1,7 @@
 import React, { Component } from "react"
 import { Router, Route } from "react-router"
-import Home from "containers/home"
+
+import Home from "app/containers/home"
 
 class Root extends Component {
   render() {

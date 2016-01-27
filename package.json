@@ -1,6 +1,7 @@
 {
   "repository": {},
   "dependencies": {
+    "immutable": "^3.7.6",
     "lodash": "^4.0.0",
     "node-uuid": "^1.4.7",
     "phoenix": "file:deps/phoenix",

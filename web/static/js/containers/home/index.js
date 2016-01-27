@@ -1,13 +1,12 @@
 import { Component } from "react"
 import { connect } from "react-redux"
 
-import template from "./home.rt.jade"
 import { createRetro } from 'app/actions'
+import template from "./home.rt.jade"
 
 class Home extends Component {
   onButtonClick = (ev) => {
-    const { dispatch } = this.props
-    dispatch(createRetro())
+    this.props.dispatch(createRetro())
   };
 }
 Home.prototype.render = template
