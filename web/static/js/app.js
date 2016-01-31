@@ -5,24 +5,33 @@ import thunkMiddleware from "redux-thunk"
 import createLogger from "redux-logger"
 import { createStore, applyMiddleware } from "redux"
 import { Provider } from "react-redux"
+import { Router, Route, IndexRoute, browserHistory } from "react-router"
+import { syncHistory } from "react-router-redux"
 
-// import socket from "./socket"
+import { reducers } from "app/reducers/index"
+import Root from "app/containers/root"
+import Home from "app/containers/home"
+import Retro from "app/containers/retro"
 
-const loggerMiddleware = createLogger()
+const loggerMiddleware      = createLogger()
+const reduxRouterMiddleware = syncHistory(browserHistory)
 
 const createStoreWithMiddleware = applyMiddleware(
+  reduxRouterMiddleware,
   thunkMiddleware,
   loggerMiddleware
 )(createStore)
 
-import { retroRedux } from "app/reducers"
-import Root from "app/containers/root"
-
-let store = createStoreWithMiddleware(retroRedux)
+let store = createStoreWithMiddleware(reducers)
 
 render(
   <Provider store={store}>
-    <Root/>
+    <Router history={browserHistory}>
+      <Route path="/" component={Root}>
+        <IndexRoute component={Home}/>
+        <Route path="retro/:uuid" component={Retro}/>
+      </Route>
+    </Router>
   </Provider>,
   document.getElementById("root")
 )

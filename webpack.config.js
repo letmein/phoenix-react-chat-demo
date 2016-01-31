@@ -6,15 +6,12 @@ module.exports = {
   },
   module: {
     loaders: [{
-      test: /\.js$/,
+      test: /\.jsx?$/,
       loader: "babel",
       exclude: /node_modules/,
       query: {
         presets: ["react", "es2015", "stage-0"]
       }
-    }, {
-      test: /\.rt\.jade$/,
-      loaders: ["react-templates", "jade-html"]
     }]
   },
   resolve: {

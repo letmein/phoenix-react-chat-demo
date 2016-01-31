@@ -2,7 +2,7 @@ defmodule Retro.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "rooms:*", Retro.RoomChannel
+  channel "retrospectives:*", Retro.RetrospectiveChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

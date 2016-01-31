@@ -1,14 +1,31 @@
 import React, { Component } from "react"
-import { Router, Route } from "react-router"
+import { connect } from "react-redux"
+import _ from "lodash"
 
-import Home from "app/containers/home"
+import { fetchRetros } from "app/actions/retros/fetch"
 
 class Root extends Component {
+  componentDidMount = () => {
+    this.props.dispatch(fetchRetros())
+  };
+
   render() {
-    return React.createElement(Router, {},
-      React.createElement(Route, { path: "/", component: Home })
-    )
+    if (this.props.isLoading) {
+      return (
+        <div>Loading...</div>
+      )
+    } else {
+      return (
+        <div>
+          <div>{this.props.children}</div>
+        </div>
+      )
+    }
   }
 }
 
-export default Root
+function select(state) {
+  return _.pick(state, ['isLoading'])
+}
+
+export default connect(select)(Root)
