@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router"
 
-import { createRetro } from 'app/actions/retros/create'
+import { createRetro } from 'app/actions/retros'
 import RetroList from "app/components/retro-list"
 
 class Home extends Component {

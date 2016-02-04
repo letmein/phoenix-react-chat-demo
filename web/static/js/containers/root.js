@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import _ from "lodash"
 
-import { fetchRetros } from "app/actions/retros/fetch"
+import { fetchRetros } from "app/actions/retros"
 
 class Root extends Component {
   componentDidMount = () => {

@@ -3,12 +3,8 @@ import { handleActions } from "redux-actions"
 import { List } from "immutable"
 import _ from "lodash"
 
-import { CREATE_RETRO_SUCCESS } from "app/actions/retros/create"
-import {
-  FETCH_RETROS_REQUEST,
-  FETCH_RETROS_SUCCESS,
-  FETCH_RETROS_FAILURE
-} from "app/actions/retros/fetch"
+// TODO find a way to use constants
+import * as actions from "app/actions"
 
 export default handleActions({
   FETCH_RETROS_SUCCESS: (state, action) => {
