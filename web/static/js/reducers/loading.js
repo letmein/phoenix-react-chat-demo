@@ -1,11 +1,8 @@
 import { combineReducers } from "redux"
 import { handleActions } from "redux-actions"
 
-import {
-  FETCH_RETROS_REQUEST,
-  FETCH_RETROS_SUCCESS,
-  FETCH_RETROS_FAILURE
-} from "app/actions/retros/fetch"
+// TODO find a way to use constants
+import * as actions from "app/actions"
 
 let retros = handleActions({
   FETCH_RETROS_REQUEST: () => (true),

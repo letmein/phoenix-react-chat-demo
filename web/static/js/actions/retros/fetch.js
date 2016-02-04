@@ -1,15 +1,12 @@
 import { createAction } from "redux-actions"
 
+import * as actions from "app/actions"
 import { lobbyChannel } from "app/channels"
 import { createRetroSuccess } from "app/actions/retros/create"
 
-export const FETCH_RETROS_REQUEST = "FETCH_RETROS_REQUEST"
-export const FETCH_RETROS_SUCCESS = "FETCH_RETROS_SUCCESS"
-export const FETCH_RETROS_FAILURE = "FETCH_RETROS_FAILURE"
-
-export const fetchRetrosRequest = createAction(FETCH_RETROS_REQUEST)
-export const fetchRetrosSuccess = createAction(FETCH_RETROS_SUCCESS)
-export const fetchRetrosFailure = createAction(FETCH_RETROS_FAILURE)
+export const fetchRetrosRequest = createAction(actions.FETCH_RETROS_REQUEST)
+export const fetchRetrosSuccess = createAction(actions.FETCH_RETROS_SUCCESS)
+export const fetchRetrosFailure = createAction(actions.FETCH_RETROS_FAILURE)
 
 export function fetchRetros() {
   return dispatch => {
