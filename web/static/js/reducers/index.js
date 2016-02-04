@@ -1,9 +1,13 @@
 import { combineReducers } from "redux"
 import { routeReducer } from "react-router-redux"
 
-import { retros } from "./retros"
+import retros from "./retros"
+import loading from "./loading"
 
-export const reducers = combineReducers({
-  retros,
+const entities = combineReducers({ retros })
+
+export default combineReducers({
+  entities,
+  loading,
   routing: routeReducer
 })

@@ -10,7 +10,7 @@ class Root extends Component {
   };
 
   render() {
-    if (this.props.isLoading) {
+    if (this.props.loadingRetros) {
       return (
         <div>Loading...</div>
       )
@@ -25,7 +25,8 @@ class Root extends Component {
 }
 
 function select(state) {
-  return _.pick(state, ['isLoading'])
+  const loadingRetros = state.loading.retros
+  return { loadingRetros } 
 }
 
 export default connect(select)(Root)

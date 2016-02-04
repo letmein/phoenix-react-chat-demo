@@ -8,7 +8,7 @@ import { Provider } from "react-redux"
 import { Router, Route, IndexRoute, browserHistory } from "react-router"
 import { syncHistory } from "react-router-redux"
 
-import { reducers } from "app/reducers/index"
+import reducers from "app/reducers/index"
 import Root from "app/containers/root"
 import Home from "app/containers/home"
 import Retro from "app/containers/retro"

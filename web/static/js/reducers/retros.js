@@ -10,7 +10,7 @@ import {
   FETCH_RETROS_FAILURE
 } from "app/actions/retros/fetch"
 
-let items = handleActions({
+export default handleActions({
   FETCH_RETROS_SUCCESS: (state, action) => {
     return List(action.payload.items)
   },
@@ -24,11 +24,3 @@ let items = handleActions({
     }
   }
 }, List())
-
-let isLoading = handleActions({
-  FETCH_RETROS_REQUEST: () => (true),
-  FETCH_RETROS_SUCCESS: () => (false),
-  FETCH_RETROS_FAILURE: () => (false)
-}, false)
-
-export const retros = combineReducers({items, isLoading})

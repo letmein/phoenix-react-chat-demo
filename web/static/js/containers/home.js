@@ -29,7 +29,7 @@ class Home extends Component {
 }
 
 function select(state) {
-  let retros = state.retros.items.toJS()
+  let retros = state.entities.retros.toJS()
   return { retros }
 }
 
