@@ -9,7 +9,6 @@ import { Router, Route, IndexRoute, browserHistory } from "react-router"
 import { syncHistory } from "react-router-redux"
 
 import reducers from "app/reducers/index"
-import Root from "app/containers/root"
 import Home from "app/containers/home"
 import Retro from "app/containers/retro"
 
@@ -27,7 +26,7 @@ let store = createStoreWithMiddleware(reducers)
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/" component={Root}>
+      <Route path="/">
         <IndexRoute component={Home}/>
         <Route path="retro/:uuid" component={Retro}/>
       </Route>

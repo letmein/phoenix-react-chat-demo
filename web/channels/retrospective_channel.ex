@@ -7,8 +7,7 @@ defmodule Retro.RetrospectiveChannel do
   def join("retrospectives:lobby", payload, socket) do
     if authorized?(payload) do
       retros = Repo.all(Retrospective)
-      # [%{uuid: "123"}, %{uuid: "234"}]
-      {:ok, %{items: retros}, socket}
+      {:ok, retros, socket}
     else
       {:error, %{reason: "unauthorized"}}
     end

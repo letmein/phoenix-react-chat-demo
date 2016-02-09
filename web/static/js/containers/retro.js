@@ -2,9 +2,11 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import _ from "lodash"
 
+import { findCurrentRetro } from 'app/actions/retros'
+
 class Retro extends Component {
   componentDidMount = () => {
-    console.log(this.props)
+    // TODO
   };
 
   render() {
@@ -15,12 +17,8 @@ class Retro extends Component {
 }
 
 function mapStateToProps(state, ownProps) {
-  //console.log('STATE:', state, 'ownProps:', ownProps)
-  //const uuid       = ownProps.params.uuid
-  const collection = state.entities.retros.toJS()
-  //const retro      = _.find(collection, { uuid })
-
-  return { collection }
+  // TODO
+  return {}
 }
 
 export default connect(mapStateToProps)(Retro)

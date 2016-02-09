@@ -1,22 +1,32 @@
 import { createAction } from "redux-actions"
 import * as uuid from "node-uuid"
+import _ from "lodash"
 
-import * as actions from "app/actions"
+import * as ActionTypes from "app/actions"
 import { lobbyChannel } from "app/channels"
 
-export const createRetroRequest = createAction(actions.CREATE_RETRO_REQUEST)
-export const createRetroSuccess = createAction(actions.CREATE_RETRO_SUCCESS)
-export const createRetroFailure = createAction(actions.CREATE_RETRO_FAILURE)
+export const createRetroRequest = createAction(ActionTypes.CREATE_RETRO_REQUEST)
+export const createRetroSuccess = createAction(ActionTypes.CREATE_RETRO_SUCCESS)
+export const createRetroFailure = createAction(ActionTypes.CREATE_RETRO_FAILURE)
+
+export const updateEntities = createAction(ActionTypes.UPDATE_ENTITIES)
+
+export function updateRetros(items) {
+  return dispatch => {
+    const retros = _.keyBy(items, "uuid")
+    dispatch(updateEntities({ retros }))
+  }
+}
 
 export function createRetro(dueDate = new Date()) {
   return dispatch => {
     dispatch(createRetroRequest())
 
-    let payload = { uuid: uuid.v1(), due_on: dueDate }
+    const newRetro = { uuid: uuid.v4(), due_on: dueDate }
 
-    lobbyChannel.push("new:retrospective", payload)
+    lobbyChannel.push("new:retrospective", newRetro)
       .receive("ok", resp => {
-        dispatch(createRetroSuccess(resp))
+        dispatch(createRetroSuccess())
       })
       .receive("error", resp => {
         dispatch(createRetroFailure())
@@ -24,9 +34,9 @@ export function createRetro(dueDate = new Date()) {
   }
 }
 
-export const fetchRetrosRequest = createAction(actions.FETCH_RETROS_REQUEST)
-export const fetchRetrosSuccess = createAction(actions.FETCH_RETROS_SUCCESS)
-export const fetchRetrosFailure = createAction(actions.FETCH_RETROS_FAILURE)
+export const fetchRetrosRequest = createAction(ActionTypes.FETCH_RETROS_REQUEST)
+export const fetchRetrosSuccess = createAction(ActionTypes.FETCH_RETROS_SUCCESS)
+export const fetchRetrosFailure = createAction(ActionTypes.FETCH_RETROS_FAILURE)
 
 export function fetchRetros() {
   return dispatch => {
@@ -34,14 +44,15 @@ export function fetchRetros() {
 
     lobbyChannel.join()
       .receive("ok", resp => {
-        dispatch(fetchRetrosSuccess(resp))
+        dispatch(updateRetros(resp))
+        dispatch(fetchRetrosSuccess())
       })
       .receive("error", resp => {
         dispatch(fetchRetrosFailure())
       })
 
     lobbyChannel.on("new:retrospective", resp => {
-      dispatch(createRetroSuccess(resp))
+      dispatch(updateRetros([resp]))
     })
   }
 }

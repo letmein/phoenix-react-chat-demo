@@ -1,14 +1,20 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import { Link } from "react-router"
+import _ from "lodash"
 
-import { createRetro } from 'app/actions/retros'
+import { createRetro, fetchRetros } from 'app/actions/retros'
 import RetroList from "app/components/retro-list"
 
 class Home extends Component {
+  componentDidMount = () => {
+    this.props.dispatch(fetchRetros())
+  };
+
   onButtonClick = (ev) => {
     this.props.dispatch(createRetro())
   };
+
   render() {
     return (
       <div>
@@ -28,9 +34,9 @@ class Home extends Component {
   }
 }
 
-function select(state) {
-  let retros = state.entities.retros.toJS()
+function mapStateToProps(state) {
+  const retros = _.values(state.entities.retros)
   return { retros }
 }
 
-export default connect(select)(Home)
+export default connect(mapStateToProps)(Home)
