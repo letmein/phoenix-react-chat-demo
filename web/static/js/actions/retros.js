@@ -56,3 +56,13 @@ export function fetchRetros() {
     })
   }
 }
+
+export function findCurrentRetro(uuid) {
+  return (dispatch, getState) => {
+    const state = getState()
+    const retro = _.find(state.entities.retros, { uuid })
+    dispatch(setCurrentRetro(retro))
+  }
+}
+
+export const setCurrentRetro = createAction(ActionTypes.SET_CURRENT_RETRO)

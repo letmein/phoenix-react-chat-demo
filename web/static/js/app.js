@@ -11,6 +11,7 @@ import { syncHistory } from "react-router-redux"
 import reducers from "app/reducers/index"
 import Home from "app/containers/home"
 import Retro from "app/containers/retro"
+import Root from "app/containers/root"
 
 const loggerMiddleware      = createLogger()
 const reduxRouterMiddleware = syncHistory(browserHistory)
@@ -26,7 +27,7 @@ let store = createStoreWithMiddleware(reducers)
 render(
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path="/">
+      <Route path="/" component={Root}>
         <IndexRoute component={Home}/>
         <Route path="retro/:uuid" component={Retro}/>
       </Route>

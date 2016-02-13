@@ -5,8 +5,8 @@ import _ from "lodash"
 import { findCurrentRetro } from 'app/actions/retros'
 
 class Retro extends Component {
-  componentDidMount = () => {
-    // TODO
+  componentWillMount = () => {
+    this.props.dispatch(findCurrentRetro(this.props.params.uuid))
   };
 
   render() {

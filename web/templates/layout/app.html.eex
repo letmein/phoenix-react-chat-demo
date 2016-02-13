@@ -25,6 +25,20 @@
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
+      <%= if @current_user do %>
+        <h2>Welcome, <%= @current_user.name %>!</h2>
+        <img style="width: 32px; height: 32px;" src="<%= @current_user.avatar %>" class="img-circle"/>
+        <%= link "Logout", to: auth_path(@conn, :delete), method: :delete, class: "btn btn-danger" %>
+      <% else %>
+        <br>
+        <br>
+
+        <a class="btn btn-primary btn-lg" href="<%= auth_path @conn, :index, "github" %>">
+          <i class="fa fa-github"></i>
+          Sign in with GitHub
+        </a>
+      <% end %>
+
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>

@@ -36,8 +36,13 @@ config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
 config :retro, Retro.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  database: "retro_dev",
-  hostname: "localhost",
+  adapter:   Ecto.Adapters.Postgres,
+  username:  "postgres",
+  database:  "retro_dev",
+  hostname:  "localhost",
   pool_size: 10
+
+config :retro, GitHub,
+  client_id:     System.get_env("GITHUB_CLIENT_ID"),
+  client_secret: System.get_env("GITHUB_CLIENT_SECRET"),
+  redirect_uri:  System.get_env("GITHUB_REDIRECT_URI")

@@ -3,14 +3,10 @@ import { connect } from "react-redux"
 import { Link } from "react-router"
 import _ from "lodash"
 
-import { createRetro, fetchRetros } from 'app/actions/retros'
+import { createRetro } from 'app/actions/retros'
 import RetroList from "app/components/retro-list"
 
 class Home extends Component {
-  componentDidMount = () => {
-    this.props.dispatch(fetchRetros())
-  };
-
   onButtonClick = (ev) => {
     this.props.dispatch(createRetro())
   };
