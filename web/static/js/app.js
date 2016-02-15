@@ -8,10 +8,15 @@ import { Provider } from "react-redux"
 import { Router, Route, IndexRoute, browserHistory } from "react-router"
 import { syncHistory } from "react-router-redux"
 
+require("normalize.css/normalize.css")
+require("react-bem-grid/dist/Grid.css")
+require("main.scss")
+
 import reducers from "app/reducers/index"
 import Home from "app/containers/home"
 import Retro from "app/containers/retro"
-import Root from "app/containers/root"
+import Root from "app/containers/root.jsx"
+import { initUserSocket } from "app/actions/user-socket"
 
 const loggerMiddleware      = createLogger()
 const reduxRouterMiddleware = syncHistory(browserHistory)
@@ -23,6 +28,12 @@ const createStoreWithMiddleware = applyMiddleware(
 )(createStore)
 
 let store = createStoreWithMiddleware(reducers)
+
+const { userToken, userId } = window
+
+if (userToken && userId) {
+  store.dispatch(initUserSocket(userToken, userId))
+}
 
 render(
   <Provider store={store}>

@@ -1,0 +1,14 @@
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  background-color: #cccc99;
+}
+
+#root {
+  flex: 1;
+  display: flex;
+}

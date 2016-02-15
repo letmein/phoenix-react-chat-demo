@@ -14,12 +14,6 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <h1>Home Page!</h1>
-
-        <p>
-          <Link to="/">Home</Link>
-        </p>
-
         <RetroList items={this.props.retros}/>
 
         <p>

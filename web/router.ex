@@ -7,7 +7,7 @@ defmodule Retro.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
-    plug :assign_current_user
+    plug :assign_user
   end
 
   pipeline :api do
@@ -19,7 +19,7 @@ defmodule Retro.Router do
 
     get "/:provider", AuthController, :index
     get "/:provider/callback", AuthController, :callback
-    delete "/logout", AuthController, :delete
+    get "/:provider/logout", AuthController, :delete
   end
 
   scope "/", Retro do
@@ -33,8 +33,12 @@ defmodule Retro.Router do
   #   pipe_through :api
   # end
 
-  defp assign_current_user(conn, _) do
-    current_user = get_session(conn, :current_user)
-    assign(conn, :current_user, current_user)
+  defp assign_user(conn, _) do
+    token   = get_session(conn, :user_token)
+    user_id = get_session(conn, :current_user_id)
+
+    conn
+    |> assign(:user_token, token)
+    |> assign(:user_id, user_id)
   end
 end

@@ -1,16 +1,23 @@
 defmodule Retro.User do
   use Retro.Web, :model
 
+  @derive {Poison.Encoder, only: [
+    :id,
+    :name,
+    :login,
+    :avatar_url
+  ]}
   schema "users" do
     field :name, :string
-    field :abbrev, :string
+    field :login, :string
     field :email, :string
+    field :avatar_url, :string
 
     timestamps
   end
 
-  @required_fields ~w(name abbrev email)
-  @optional_fields ~w()
+  @required_fields ~w(name login)
+  @optional_fields ~w(avatar_url email)
 
   @doc """
   Creates a changeset based on the `model` and `params`.

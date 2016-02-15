@@ -3,7 +3,7 @@ defmodule Retro.UserTest do
 
   alias Retro.User
 
-  @valid_attrs %{abbrev: "some content", email: "some content", name: "some content"}
+  @valid_attrs %{login: "foo", email: "foo@example.com", name: "Foo"}
   @invalid_attrs %{}
 
   test "changeset with valid attributes" do

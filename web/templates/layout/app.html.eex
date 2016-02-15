@@ -6,44 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-
     <title>Hello Retro!</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <script>
+      window.userToken = "<%= assigns.user_token %>"
+      window.userId = "<%= assigns.user_id %>"
+    </script>
   </head>
 
   <body>
-    <div class="container">
-      <header class="header">
-        <nav role="navigation">
-          <ul class="nav nav-pills pull-right">
-            <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-          </ul>
-        </nav>
-        <span class="logo"></span>
-      </header>
-
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-
-      <%= if @current_user do %>
-        <h2>Welcome, <%= @current_user.name %>!</h2>
-        <img style="width: 32px; height: 32px;" src="<%= @current_user.avatar %>" class="img-circle"/>
-        <%= link "Logout", to: auth_path(@conn, :delete), method: :delete, class: "btn btn-danger" %>
-      <% else %>
-        <br>
-        <br>
-
-        <a class="btn btn-primary btn-lg" href="<%= auth_path @conn, :index, "github" %>">
-          <i class="fa fa-github"></i>
-          Sign in with GitHub
-        </a>
-      <% end %>
-
-      <main role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
-
-    </div> <!-- /container -->
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <%= render @view_module, @view_template, assigns %>
   </body>
 </html>

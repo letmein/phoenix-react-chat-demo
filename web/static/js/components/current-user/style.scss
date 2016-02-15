@@ -1,0 +1,24 @@
+.current-user {
+  line-height: 32px;
+  float: right;
+}
+
+.current-user__avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  float: left;
+}
+
+.current-user__name {
+  margin-left: 8px;
+  color: #003300;
+  float: left;
+}
+
+.current-user__sign-out {
+  margin-left: 8px;
+  text-decoration: none;
+  color: #336633;
+  float: left;
+}
