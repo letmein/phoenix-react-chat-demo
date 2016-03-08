@@ -4,10 +4,10 @@ import * as ActionTypes from "app/actions"
 
 import { createAction } from "redux-actions"
 
-export const openUserSocket = createAction(ActionTypes.OPEN_USER_SOCKET)
-export const closeUserSocket = createAction(ActionTypes.CLOSE_USER_SOCKET)
-export const joinUserChannel = createAction(ActionTypes.JOIN_USER_CHANNEL)
-export const authenticateUser = createAction(ActionTypes.AUTHENTICATE_USER)
+export const openUserSocket     = createAction(ActionTypes.OPEN_USER_SOCKET)
+export const closeUserSocket    = createAction(ActionTypes.CLOSE_USER_SOCKET)
+export const createLobbyChannel = createAction(ActionTypes.CREATE_LOBBY_CHANNEL)
+export const authenticateUser   = createAction(ActionTypes.AUTHENTICATE_USER)
 
 export function initUserSocket(userToken, userId) {
   return dispatch => {
@@ -18,7 +18,7 @@ export function initUserSocket(userToken, userId) {
 
     socket.onOpen(() => {
       dispatch(openUserSocket(socket)) 
-      dispatch(initUserChannel(socket, userId))
+      dispatch(initLobbyChannel(socket, userId))
     })
 
     socket.onClose(() => {
@@ -33,13 +33,20 @@ export function initUserSocket(userToken, userId) {
   }
 }
 
-export function initUserChannel(socket, userId) {
+export function initLobbyChannel(socket, userId) {
   return dispatch => {
-    const channel = socket.channel(`users:${userId}`)
+    const channel = socket.channel("users:lobby")
+
     channel.join()
       .receive("ok", (response) => {
-        dispatch(joinUserChannel(channel))
+        channel.push("user-joined", response)
+        dispatch(createLobbyChannel(channel))
         dispatch(authenticateUser(response))
+      })
+
+    channel
+      .on("user-joined", resp => {
+        console.log(resp)
       })
   }
 }

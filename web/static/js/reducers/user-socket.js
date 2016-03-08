@@ -10,14 +10,12 @@ const socket = handleActions({
   [ActionTypes.CLOSE_USER_SOCKET]: () => (null)
 }, null)
 
-const userChannel = handleActions({
-  [ActionTypes.JOIN_USER_CHANNEL]: (state, action) => {
+const lobby = handleActions({
+  [ActionTypes.CREATE_LOBBY_CHANNEL]: (state, action) => {
     return action.payload
   },
 }, null)
 
-const channels = combineReducers({
-  user: userChannel
-})
+const channels = combineReducers({ lobby })
 
 export default combineReducers({ socket, channels })
