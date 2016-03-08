@@ -10,7 +10,7 @@ import { syncHistory } from "react-router-redux"
 
 require("normalize.css/normalize.css")
 require("react-bem-grid/dist/Grid.css")
-require("main.scss")
+require("app.scss")
 
 import reducers from "app/reducers/index"
 import Home from "app/containers/home"

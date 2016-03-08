@@ -3,7 +3,6 @@ import * as uuid from "node-uuid"
 import _ from "lodash"
 
 import * as ActionTypes from "app/actions"
-import { lobbyChannel } from "app/channels"
 
 export const createRetroRequest = createAction(ActionTypes.CREATE_RETRO_REQUEST)
 export const createRetroSuccess = createAction(ActionTypes.CREATE_RETRO_SUCCESS)

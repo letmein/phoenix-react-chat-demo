@@ -16,8 +16,8 @@ defmodule Retro.User do
     timestamps
   end
 
-  @required_fields ~w(name login)
-  @optional_fields ~w(avatar_url email)
+  @required_fields ~w(login)
+  @optional_fields ~w(avatar_url email name )
 
   @doc """
   Creates a changeset based on the `model` and `params`.

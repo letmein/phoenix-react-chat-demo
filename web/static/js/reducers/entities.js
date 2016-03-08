@@ -1,7 +1,7 @@
 import { handleActions } from "redux-actions"
 import _ from "lodash"
 
-import * as ActionTypes from "app/actions"
+import * as ActionTypes from "../actions"
 
 const defaultState = { retros: {} }
 

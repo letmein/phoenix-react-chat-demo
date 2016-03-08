@@ -1,6 +1,6 @@
 import { expect } from "chai"
 
-import subject from "../../reducers/entities"
+import subject from "./entities"
 
 describe("entities reducer", () => {
   it('returns default state', () => {
