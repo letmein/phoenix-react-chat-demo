@@ -20,6 +20,11 @@ defmodule Retro.UserChannel do
     {:noreply, socket}
   end
 
+  def terminate(_reason, socket) do
+    broadcast socket, "user-left", %{user_id: socket.assigns.user_id}
+    :ok
+  end
+
   defp authorized?(_payload) do
     true
   end

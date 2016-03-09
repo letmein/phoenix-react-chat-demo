@@ -44,9 +44,12 @@ export function initLobbyChannel(socket, userId) {
         dispatch(authenticateUser(response))
       })
 
-    channel
-      .on("user-joined", resp => {
-        console.log(resp)
-      })
+    channel.on("user-joined", resp => {
+      console.log("user-joined", resp)
+    })
+
+    channel.on("user-left", resp => {
+      console.log("user-left", resp)
+    })
   }
 }
