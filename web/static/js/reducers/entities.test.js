@@ -17,11 +17,10 @@ describe("entities reducer", () => {
       foos: { a: 'a' } 
     }
     const action = {
+      type: 'UPDATE_ENTITIES',
       payload: {
-        entities: {
-          foos: { b: 'b' },
-          bars: { c: 'c' }
-        }
+        foos: { b: 'b' },
+        bars: { c: 'c' }
       }
     }
     const result = subject(state, action)

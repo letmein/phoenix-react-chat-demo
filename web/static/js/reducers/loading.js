@@ -1,7 +1,7 @@
 import { combineReducers } from "redux"
 import { handleActions } from "redux-actions"
 
-import * as ActionTypes from "app/actions"
+import * as ActionTypes from "../action-types"
 
 let retros = handleActions({
   [ActionTypes.FETCH_RETROS_REQUEST]: () => (true),

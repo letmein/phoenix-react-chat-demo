@@ -2,13 +2,12 @@ import { createAction } from "redux-actions"
 import * as uuid from "node-uuid"
 import _ from "lodash"
 
-import * as ActionTypes from "app/actions"
+import * as ActionTypes from "../action-types"
+import updateEntities from "./entities"
 
 export const createRetroRequest = createAction(ActionTypes.CREATE_RETRO_REQUEST)
 export const createRetroSuccess = createAction(ActionTypes.CREATE_RETRO_SUCCESS)
 export const createRetroFailure = createAction(ActionTypes.CREATE_RETRO_FAILURE)
-
-export const updateEntities = createAction(ActionTypes.UPDATE_ENTITIES)
 
 export function updateRetros(items) {
   return dispatch => {

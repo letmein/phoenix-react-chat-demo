@@ -1,7 +1,7 @@
 import { combineReducers } from "redux"
 import { handleActions } from "redux-actions"
 
-import * as ActionTypes from "app/actions"
+import * as ActionTypes from "../action-types"
 
 const socket = handleActions({
   [ActionTypes.OPEN_USER_SOCKET]: (state, action) => {

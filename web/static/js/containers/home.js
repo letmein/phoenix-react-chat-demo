@@ -3,8 +3,8 @@ import { connect } from "react-redux"
 import { Link } from "react-router"
 import _ from "lodash"
 
-import { createRetro } from 'app/actions/retros'
-import RetroList from "app/components/retro-list"
+import { createRetro } from '../actions/retros'
+import RetroList from "../components/retro-list"
 
 class Home extends Component {
   onButtonClick = (ev) => {
