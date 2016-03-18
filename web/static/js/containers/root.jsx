@@ -3,9 +3,7 @@ import { connect } from "react-redux"
 import _ from "lodash"
 import { Grid, Row, Col } from "react-bem-grid"
 
-import CurrentUser from "../components/current-user/component.jsx"
-import LoginLink from "../components/login-link/component.jsx"
-import UserList from "../components/user-list/user-list.jsx"
+import { CurrentUser, LoginLink, UserList } from "../components"
 
 class Root extends Component {
   render() {

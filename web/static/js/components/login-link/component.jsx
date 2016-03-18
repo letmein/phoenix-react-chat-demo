@@ -11,5 +11,3 @@ export default () => {
     </div>
   )
 }
-
-require("./style.scss")
