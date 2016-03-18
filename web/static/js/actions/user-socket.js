@@ -40,9 +40,10 @@ export function initLobbyChannel(socket, userId) {
 
     channel.join()
       .receive("ok", (response) => {
-        const { users } = response
-
         dispatch(createLobbyChannel(channel))
+
+        const { users } = response
+        dispatch(updateUsers(users))
 
         const user = _.find(users, { id: parseInt(userId) })
         dispatch(authenticateUser(user))
@@ -50,7 +51,6 @@ export function initLobbyChannel(socket, userId) {
         channel.push("user-joined", user)
 
         const userIds = _.map(users, 'id')
-        dispatch(updateUsers(users))
         dispatch(goOnline(userIds))
       })
 

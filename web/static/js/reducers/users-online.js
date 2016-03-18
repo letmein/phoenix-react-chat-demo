@@ -7,11 +7,9 @@ const defaultState = []
 
 export default handleActions({
   [ActionTypes.GO_ONLINE]: (state, action) => {
-    const ids = _.map(action.payload, parseInt)
-    return _.union(state, ids)
+    return _.union(state, action.payload)
   },
   [ActionTypes.GO_OFFLINE]: (state, action) => {
-    const ids = _.map(action.payload, parseInt)
-    return _.difference(state, ids)
+    return _.difference(state, action.payload)
   }
 }, defaultState)
