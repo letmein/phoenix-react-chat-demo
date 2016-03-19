@@ -2,7 +2,7 @@ import { Socket } from "phoenix"
 import { createAction } from "redux-actions"
 
 import * as ActionTypes from "../action-types"
-import { updateUsers } from "./users"
+import { updateEntities } from "./entities"
 
 export const openUserSocket     = createAction(ActionTypes.OPEN_USER_SOCKET)
 export const closeUserSocket    = createAction(ActionTypes.CLOSE_USER_SOCKET)
@@ -43,9 +43,9 @@ export function initLobbyChannel(socket, userId) {
         dispatch(createLobbyChannel(channel))
 
         const { users } = response
-        dispatch(updateUsers(users))
+        dispatch(updateEntities(response))
 
-        const user = _.find(users, { id: parseInt(userId) })
+        const user = _.find(users, { id: userId })
         dispatch(authenticateUser(user))
 
         channel.push("user-joined", user)
@@ -55,7 +55,7 @@ export function initLobbyChannel(socket, userId) {
       })
 
     channel.on("user-joined", user => {
-      dispatch(updateUsers([user]))
+      dispatch(updateEntities([user]))
       dispatch(goOnline([user.id]))
     })
 

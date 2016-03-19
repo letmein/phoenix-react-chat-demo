@@ -1,6 +1,8 @@
 defmodule Retro.User do
   use Retro.Web, :model
 
+  @primary_key {:id, :binary_id, autogenerate: true}
+
   @derive {Poison.Encoder, only: [
     :id,
     :name,
