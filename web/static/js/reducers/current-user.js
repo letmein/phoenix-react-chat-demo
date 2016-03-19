@@ -7,6 +7,7 @@ const defaultState = null
 
 export default handleActions({
   [ActionTypes.AUTHENTICATE_USER]: (state, action) => {
-    return action.payload
+    const user = action.payload
+    return user.id
   }
 }, defaultState)
