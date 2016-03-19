@@ -45,8 +45,7 @@ export function initLobbyChannel(socket, userId) {
         const { users } = response
         dispatch(updateEntities(response))
 
-        const user = _.find(users, { id: userId })
-        dispatch(authenticateUser(user))
+        dispatch(authenticateUser(userId))
 
         channel.push("user-joined", user)
 

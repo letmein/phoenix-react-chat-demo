@@ -14,7 +14,7 @@ describe("current user reducer", () => {
     const state = null
     const action = {
       type: 'AUTHENTICATE_USER',
-      payload: { id: 'USER_ID' }
+      payload: 'USER_ID'
     }
     const result = subject(state, action)
 
