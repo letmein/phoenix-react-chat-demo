@@ -13,20 +13,17 @@ defmodule Retro.UserChannel do
     end
   end
 
-  def handle_in("user-joined", payload, socket) do
-    broadcast socket, "user-joined", payload
+  def handle_in("user-authenticated", user_id, socket) do
+    user = Retro.Repo.get(Retro.User, user_id)
+    broadcast socket, "user-joined", user
     {:noreply, socket}
   end
 
-  def handle_out("user-joined", payload, socket) do
-    user_id = socket.assigns.user_id
-    case payload do
-      %{"id" => ^user_id} ->
-        {:noreply, socket}
-      _ ->
-        push socket, "user-joined", payload
-        {:noreply, socket}
+  def handle_out("user-joined", user, socket) do
+    unless user.id == socket.assigns.user_id do
+      push socket, "user-joined", user
     end
+    {:noreply, socket}
   end
 
   def handle_out(event, payload, socket) do

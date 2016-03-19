@@ -42,19 +42,18 @@ export function initLobbyChannel(socket, userId) {
       .receive("ok", (response) => {
         dispatch(createLobbyChannel(channel))
 
-        const { users } = response
+        const userIds = _.map(response.users, 'id')
         dispatch(updateEntities(response))
+        dispatch(goOnline(userIds))
 
         dispatch(authenticateUser(userId))
 
-        channel.push("user-joined", user)
+        channel.push("user-authenticated", userId)
 
-        const userIds = _.map(users, 'id')
-        dispatch(goOnline(userIds))
       })
 
     channel.on("user-joined", user => {
-      dispatch(updateEntities([user]))
+      dispatch(updateEntities({ users: [user] }))
       dispatch(goOnline([user.id]))
     })
 
