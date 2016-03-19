@@ -31,9 +31,10 @@ class Root extends Component {
 }
 
 function mapStateToProps(state) {
+  const userIds = _.without(state.usersOnline, _.get(state.currentUser, 'id'))
   return {
     currentUser: state.currentUser,
-    usersOnline: _.chain(state.entities.users).pick(state.usersOnline).value()
+    usersOnline: _.chain(state.entities.users).pick(userIds).value()
   } 
 }
 
