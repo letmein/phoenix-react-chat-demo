@@ -8,7 +8,8 @@ describe("entities reducer", () => {
     const result = subject(undefined, action)
 
     expect(result).to.deep.equal({
-      retros: {}
+      retros: {},
+      users:  {}
     })
   })
 
