@@ -13,8 +13,6 @@ require("react-bem-grid/dist/Grid.css")
 require("app.scss")
 
 import reducers from "./reducers/index"
-import Home from "./containers/home"
-import Retro from "./containers/retro"
 import Root from "./containers/root.jsx"
 import { initUserSocket } from "./actions/user-socket"
 
@@ -39,8 +37,6 @@ render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={Root}>
-        <IndexRoute component={Home}/>
-        <Route path="retro/:uuid" component={Retro}/>
       </Route>
     </Router>
   </Provider>,
