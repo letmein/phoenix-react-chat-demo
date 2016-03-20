@@ -1,5 +1,5 @@
 import { combineReducers } from "redux"
-import { routeReducer } from "react-router-redux"
+import { routerReducer } from "react-router-redux"
 
 import loading from "./loading"
 import entities from "./entities"
@@ -15,5 +15,5 @@ export default combineReducers({
   currentUserId,
   usersOnline,
   userSocket,
-  routing: routeReducer
+  routing: routerReducer
 })
