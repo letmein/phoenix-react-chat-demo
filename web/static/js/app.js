@@ -12,13 +12,13 @@ require("normalize.css/normalize.css")
 require("react-bem-grid/dist/Grid.css")
 require("app.scss")
 
-import reducers from "app/reducers/index"
-import Home from "app/containers/home"
-import Retro from "app/containers/retro"
-import Root from "app/containers/root.jsx"
-import { initUserSocket } from "app/actions/user-socket"
+import reducers from "./reducers/index"
+import Home from "./containers/home"
+import Retro from "./containers/retro"
+import Root from "./containers/root.jsx"
+import { initUserSocket } from "./actions/user-socket"
 
-const loggerMiddleware      = createLogger()
+const loggerMiddleware = createLogger()
 
 const createStoreWithMiddleware = applyMiddleware(
   thunkMiddleware,
