@@ -28,7 +28,6 @@ module.exports = {
   },
   resolve: {
     modulesDirectories: [
-      __dirname + "/bower_components",
       __dirname + "/node_modules",
       __dirname + "/web/static/js",
       __dirname + "/web/static/assets"
