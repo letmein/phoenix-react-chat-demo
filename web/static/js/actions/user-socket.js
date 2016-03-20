@@ -3,13 +3,12 @@ import { createAction } from "redux-actions"
 
 import * as ActionTypes from "../action-types"
 import { updateEntities } from "./entities"
+import { goOnline, goOffline } from "./online"
 
 export const openUserSocket     = createAction(ActionTypes.OPEN_USER_SOCKET)
 export const closeUserSocket    = createAction(ActionTypes.CLOSE_USER_SOCKET)
 export const createLobbyChannel = createAction(ActionTypes.CREATE_LOBBY_CHANNEL)
 export const authenticateUser   = createAction(ActionTypes.AUTHENTICATE_USER)
-export const goOnline           = createAction(ActionTypes.GO_ONLINE)
-export const goOffline          = createAction(ActionTypes.GO_OFFLINE)
 
 export function initUserSocket(userToken, userId) {
   return dispatch => {
@@ -41,24 +40,20 @@ export function initLobbyChannel(socket, userId) {
     channel.join()
       .receive("ok", (response) => {
         dispatch(createLobbyChannel(channel))
-
-        const userIds = _.map(response.users, 'id')
         dispatch(updateEntities(response))
-        dispatch(goOnline(userIds))
-
+        dispatch(goOnline(response.users))
         dispatch(authenticateUser(userId))
 
         channel.push("user-authenticated", userId)
-
       })
 
     channel.on("user-joined", user => {
       dispatch(updateEntities({ users: [user] }))
-      dispatch(goOnline([user.id]))
+      dispatch(goOnline(user))
     })
 
     channel.on("user-left", user => {
-      dispatch(goOffline([user.id]))
+      dispatch(goOffline(user))
     })
   }
 }

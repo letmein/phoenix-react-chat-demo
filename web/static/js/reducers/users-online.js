@@ -7,9 +7,11 @@ const defaultState = []
 
 export default handleActions({
   [ActionTypes.GO_ONLINE]: (state, action) => {
-    return _.union(state, action.payload)
+    const userIds = action.payload
+    return _.union(state, userIds)
   },
   [ActionTypes.GO_OFFLINE]: (state, action) => {
-    return _.difference(state, action.payload)
+    const userId = action.payload
+    return _.without(state, userId)
   }
 }, defaultState)
