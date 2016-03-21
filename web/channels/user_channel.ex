@@ -19,6 +19,11 @@ defmodule Retro.UserChannel do
     {:noreply, socket}
   end
 
+  def handle_in("message-sent", payload, socket) do
+    broadcast socket, "message-received", payload
+    {:reply, :ok, socket}
+  end
+
   def handle_out("user-joined", user, socket) do
     unless user.id == socket.assigns.user_id do
       push socket, "user-joined", user

@@ -3,11 +3,25 @@ import { connect } from "react-redux"
 import _ from "lodash"
 import { Grid, Row, Col } from "react-bem-grid"
 
-import { CurrentUser, LoginLink, UserList } from "../components"
+import { CurrentUser, LoginLink, UserList, MessageList } from "../components"
+
+import { sendMessage } from "../actions/messages"
 
 class Root extends Component {
+  handleKeyPress = event => {
+    const { dispatch } = this.props
+
+    if (event.key == 'Enter') {
+      const text = event.target.value
+      const { currentUser, channel } = this.props
+      dispatch(sendMessage(channel, currentUser, text))
+    }
+
+    // TODO notify about typing
+  };
+
   render() {
-    const { currentUser, usersOnline } = this.props
+    const { currentUser, usersOnline, currentMessage, messages } = this.props
 
     if (_.isEmpty(currentUser)) {
       return ( <LoginLink/> )
@@ -21,7 +35,15 @@ class Root extends Component {
           </Row>
           <Row>
             <Col md>
+              <input type="text" onKeyPress={this.handleKeyPress} value={currentMessage} />
+            </Col>
+          </Row>
+          <Row>
+            <Col md>
               <UserList users={usersOnline} />
+            </Col>
+            <Col md>
+              <MessageList messages={messages} />
             </Col>
           </Row>
         </Grid>
@@ -34,10 +56,15 @@ function mapStateToProps(state) {
   const userStore = state.entities.users
   const userIds   = _.without(state.usersOnline, state.currentUserId)
 
-  const currentUser = userStore[state.currentUserId]
-  const usersOnline = _.pick(userStore, userIds)
+  const currentUser    = userStore[state.currentUserId]
+  const usersOnline    = _.pick(userStore, userIds)
+  const channel        = state.userSocket.channels.lobby
+  const currentMessage = state.currentMessage
+  const messages       = _.map(state.messages, message => {
+    return _.merge({}, message, { user: userStore[message.user_id] })
+  })
  
-  return { currentUser, usersOnline }
+  return { currentUser, usersOnline, channel, currentMessage, messages }
 }
 
 export default connect(mapStateToProps)(Root)
