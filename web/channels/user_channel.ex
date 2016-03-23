@@ -5,7 +5,7 @@ defmodule Retro.UserChannel do
   intercept ["user-joined"]
 
   def join("users:lobby", payload, socket) do
-    Retro.OnlineRegistry.add(socket.assigns.user_id)
+    Retro.SetRegistry.put(:online, socket.assigns.user_id)
     if authorized?(payload) do
       {:ok, %{users: users_online}, socket}
     else
@@ -37,7 +37,7 @@ defmodule Retro.UserChannel do
   end
 
   def terminate(_reason, socket) do
-    Retro.OnlineRegistry.remove(socket.assigns.user_id)
+    Retro.SetRegistry.remove(:online, socket.assigns.user_id)
     broadcast socket, "user-left", %{id: socket.assigns.user_id}
     :ok
   end
@@ -47,7 +47,7 @@ defmodule Retro.UserChannel do
   end
 
   defp users_online do
-    ids = Retro.OnlineRegistry.all
+    ids = Retro.SetRegistry.all(:online)
     query = from u in Retro.User, where: u.id in ^ids
     Retro.Repo.all(query)
   end
