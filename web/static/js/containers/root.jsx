@@ -55,14 +55,15 @@ class Root extends Component {
 function mapStateToProps(state) {
   const userStore = state.entities.users
   const userIds   = _.without(state.usersOnline, state.currentUserId)
+  const messageStore = state.entities.messages
 
   const currentUser    = userStore[state.currentUserId]
   const usersOnline    = _.pick(userStore, userIds)
   const channel        = state.userSocket.channels.lobby
   const currentMessage = state.currentMessage
-  const messages       = _.map(state.messages, message => {
+  const messages       = _.chain(messageStore).map(message => {
     return _.merge({}, message, { user: userStore[message.user_id] })
-  })
+  }).orderBy(['sent_at', 'desc']).reverse().value()
  
   return { currentUser, usersOnline, channel, currentMessage, messages }
 }

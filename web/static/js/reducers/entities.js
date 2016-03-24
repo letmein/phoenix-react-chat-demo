@@ -3,7 +3,7 @@ import _ from "lodash"
 
 import * as ActionTypes from "../action-types"
 
-const defaultState = { retros: {}, users: {} }
+const defaultState = { users: {}, messages: {} }
 
 export default handleActions({
   [ActionTypes.UPDATE_ENTITIES]: (state, action) => {

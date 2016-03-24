@@ -2,7 +2,8 @@ import React from "react"
 
 export default (props) => {
   const { imageUrl, className } = props
+  const style = { backgroundImage: `url(${imageUrl})` }
   return (
-    <img src={imageUrl} height="32" width="32" className={`user-avatar ${className}`}/>
+    <span style={style} className={`user-avatar ${className}`}/>
   )
 }

@@ -58,7 +58,7 @@ export function initLobbyChannel(socket, userId) {
     })
 
     channel.on("message-received", message => {
-      dispatch(receiveMessage(message))
+      dispatch(updateEntities({ messages: [message] }))
     })
   }
 }

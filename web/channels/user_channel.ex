@@ -6,8 +6,9 @@ defmodule Retro.UserChannel do
 
   def join("users:lobby", payload, socket) do
     Retro.SetRegistry.put(:online, socket.assigns.user_id)
+    messages = Retro.SizedStackRegistry.all(:messages)
     if authorized?(payload) do
-      {:ok, %{users: users_online}, socket}
+      {:ok, %{users: users_online, messages: messages}, socket}
     else
       {:error, %{reason: "unauthorized"}}
     end
@@ -20,6 +21,7 @@ defmodule Retro.UserChannel do
   end
 
   def handle_in("message-sent", payload, socket) do
+    Retro.SizedStackRegistry.put(:messages, payload)
     broadcast socket, "message-received", payload
     {:reply, :ok, socket}
   end
@@ -37,7 +39,7 @@ defmodule Retro.UserChannel do
   end
 
   def terminate(_reason, socket) do
-    Retro.SetRegistry.remove(:online, socket.assigns.user_id)
+    Retro.SetRegistry.delete(:online, socket.assigns.user_id)
     broadcast socket, "user-left", %{id: socket.assigns.user_id}
     :ok
   end
