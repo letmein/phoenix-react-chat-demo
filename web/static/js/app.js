@@ -9,7 +9,6 @@ import { Router, Route, IndexRoute, browserHistory } from "react-router"
 import { syncHistoryWithStore } from "react-router-redux"
 
 require("normalize.css/normalize.css")
-//require("react-bem-grid/dist/Grid.css")
 require("app.scss")
 
 import reducers from "./reducers/index"

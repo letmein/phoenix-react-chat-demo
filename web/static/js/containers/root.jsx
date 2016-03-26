@@ -1,7 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 import _ from "lodash"
-import { Grid, Row, Col } from "react-bem-grid"
 
 import { CurrentUser, LoginLink, UserList, MessageList, ChatInput } from "../components"
 
