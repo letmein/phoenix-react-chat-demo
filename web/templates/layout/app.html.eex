@@ -7,10 +7,6 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <title>Hello Retro!</title>
-    <script>
-      window.userToken = "<%= assigns.user_token %>"
-      window.userId = "<%= assigns.user_id %>"
-    </script>
   </head>
 
   <body>
