@@ -4,62 +4,75 @@ html {
 
 body {
   height: 100%;
-  background-color: #cccc99;
+  background-color: #333300;
 }
 
 #container {
   height: 100%;
+  min-width: 100%;
+  display: flex;
+  overflow: hidden;
 }
 
 .root {
-  display: flex;
   overflow: hidden;
-  flex-flow: row wrap;
-
-  max-width: 800px;
   height: 100%;
   margin: 0 auto;
+  display: flex;
+  flex-flow: column;
+  flex: 1 0 auto;
 
-  &__nav {
+  &__header {
+    background-color: #999966;
     height: 32px;
     width: 100%;
-    flex: 0 0 auto;
-    margin-top: 8px;
-    margin-bottom: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
     display: flex;
+    flex: 0 0 auto;
+  }
+
+  &__nav {
+    max-width: 800px;
+    margin: 0 auto;
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
     justify-content: flex-end;
+  }
+ 
+  &__main {
+    display: flex;
+    flex: 1 0 auto;
+    flex-flow: row;
+    margin: 0 auto;
+    max-width: 800px;
+    overflow: hidden;
+    background-color: #cccc99;
   }
 
   &__sidebar {
-    border: 1px solid green;
     flex: 1 0 auto;
   }
 
-  &__main {
-    border: 1px solid black;
-    flex: 2 0 auto;
-    height: 100%;
-    width: 250px;
+  &__messages {
+    display: flex;
+    flex: 3 0 auto;
     overflow: hidden;
+    flex-flow: column;
   }
-}
 
-.messenger {
-  height: 100%;
-  overflow: hidden;
-  display: flex;
-  flex-flow: column;
-
-  &__list {
-    flex: 1 0 auto;
-    height: 0;
+  &__message-list {
+    flex: 1 1 auto;
     overflow: scroll;
+    display: flex;
+    flex-flow: column;
+    height: 0;
   }
 
-  &__input {
+  &__message-input {
     flex: 0 0 auto;
-    height: 100px;
-    margin-bottom: 50px;
-    border: 2px solid red;
+    height: 50px;
   }
 }
+

@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import _ from "lodash"
 
 export default class extends Component {
   constructor(props) {
@@ -11,8 +12,9 @@ export default class extends Component {
   };
 
   handleKeyPress = event => {
-    if (event.key == "Enter" && !event.shiftKey) {
-      this.props.onSubmit(event.target.value)
+    const value = _.trim(event.target.value)
+    if (!_.isEmpty(value) && event.key == "Enter" && !event.shiftKey) {
+      this.props.onSubmit(value)
       this.setState({ value: "" })
     }
   };

@@ -22,15 +22,23 @@ class Root extends Component {
     } else {
       return (
         <div className="root">
-          <div className="root__nav">
-            <CurrentUser user={currentUser}/>
+          <div className="root__header">
+            <nav className="root__nav">
+              <CurrentUser user={currentUser}/>
+            </nav>
           </div>
-          <div className="root__sidebar">
-            <UserList users={usersOnline} />
-          </div>
-          <div className="root__main messenger">
-            <MessageList messages={messages} className="messenger__list"/>
-            <ChatInput className="messenger__input" onSubmit={this.createOnSubmit()}/>
+          <div className="root__main">
+            <div className="root__sidebar">
+              <UserList users={usersOnline} />
+            </div>
+            <div className="root__messages">
+              <div className="root__message-list">
+                <MessageList messages={messages}/>
+              </div>
+              <div className="root__message-input">
+                <ChatInput onSubmit={this.createOnSubmit()}/>
+              </div>
+            </div>
           </div>
         </div>
       )
