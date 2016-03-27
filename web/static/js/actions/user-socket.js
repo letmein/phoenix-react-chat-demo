@@ -42,7 +42,7 @@ export function initLobbyChannel(socket, userId) {
       .receive("ok", (response) => {
         dispatch(createLobbyChannel(channel))
         dispatch(updateEntities(response))
-        dispatch(goOnline(response.users))
+        dispatch(goOnline(response.online_user_ids))
         dispatch(authenticateUser(userId))
 
         channel.push("user-authenticated", userId)
@@ -50,11 +50,11 @@ export function initLobbyChannel(socket, userId) {
 
     channel.on("user-joined", user => {
       dispatch(updateEntities({ users: [user] }))
-      dispatch(goOnline(user))
+      dispatch(goOnline([user.id]))
     })
 
     channel.on("user-left", user => {
-      dispatch(goOffline(user))
+      dispatch(goOffline(user.id))
     })
 
     channel.on("message-received", message => {

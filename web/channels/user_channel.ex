@@ -7,8 +7,14 @@ defmodule Retro.UserChannel do
   def join("users:lobby", payload, socket) do
     Retro.SetRegistry.put(:online, socket.assigns.user_id)
     messages = Retro.SizedStackRegistry.all(:messages)
+    online   = Retro.SetRegistry.all(:online)
+    response = %{
+      users:           all_users(messages, online),
+      messages:        messages,
+      online_user_ids: online
+    }
     if authorized?(payload) do
-      {:ok, %{users: users_online, messages: messages}, socket}
+      {:ok, response, socket}
     else
       {:error, %{reason: "unauthorized"}}
     end
@@ -48,9 +54,12 @@ defmodule Retro.UserChannel do
     true
   end
 
-  defp users_online do
-    ids = Retro.SetRegistry.all(:online)
-    query = from u in Retro.User, where: u.id in ^ids
+  defp all_users(messages, online) do
+    all_user_ids =  messages
+      |> Enum.map(&(&1["user_id"]))
+      |> Enum.concat(online)
+      |> Enum.dedup
+    query = from u in Retro.User, where: u.id in ^all_user_ids
     Retro.Repo.all(query)
   end
 end
