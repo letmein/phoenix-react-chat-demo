@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import _ from "lodash"
 
-import { CurrentUser, LoginLink, UserList, MessageList, ChatInput } from "../components"
+import { CurrentUser, LoginLink, UserList, MessageList, ChatInput, Autoscroller } from "../components"
 
 import { sendMessage } from "../actions/messages"
 
@@ -32,9 +32,9 @@ class Root extends Component {
               <UserList users={usersOnline} />
             </div>
             <div className="root__messages">
-              <div className="root__message-list">
+              <Autoscroller className="root__message-list">
                 <MessageList messages={messages}/>
-              </div>
+              </Autoscroller>
               <div className="root__message-input">
                 <ChatInput onSubmit={this.createOnSubmit()}/>
               </div>
