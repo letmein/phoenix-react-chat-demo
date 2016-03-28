@@ -2,6 +2,7 @@
   "repository": {},
   "dependencies": {
     "lodash": "^4.6.1",
+    "moment": "^2.12.0",
     "node-uuid": "^1.4.7",
     "normalize.css": "^3.0.3",
     "phoenix": "file:deps/phoenix",
