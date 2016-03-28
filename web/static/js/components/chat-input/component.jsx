@@ -24,7 +24,7 @@ export default class extends Component {
     const { className } = this.props
     return (
       <textarea
-        className={className}
+        className={`chat-input ${className}`}
         value={value}
         onChange={this.handleChange}
         onKeyPress={this.handleKeyPress}

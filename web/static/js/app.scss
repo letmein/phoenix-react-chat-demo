@@ -23,7 +23,8 @@ body {
   flex: 1 0 auto;
 
   &__header {
-    background-color: #999966;
+    background-color: #cccc66;
+    border-bottom: 4px solid #999966;
     height: 32px;
     width: 100%;
     padding-top: 8px;
@@ -48,11 +49,12 @@ body {
     margin: 0 auto;
     max-width: 800px;
     overflow: hidden;
-    background-color: #cccc99;
   }
 
   &__sidebar {
+    display: flex;
     flex: 1 0 auto;
+    background-color: #cccc99;
   }
 
   &__messages {
@@ -60,6 +62,8 @@ body {
     flex: 3 0 auto;
     overflow: hidden;
     flex-flow: column;
+    max-width: 600px;
+    background-color: #ffffcc;
   }
 
   &__message-list {
@@ -72,7 +76,9 @@ body {
 
   &__message-input {
     flex: 0 0 auto;
-    height: 50px;
+    height: 60px;
+    padding: 16px;
+    display: flex;
   }
 }
 

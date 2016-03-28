@@ -7,9 +7,8 @@ export default (props) => {
   const { users } = props
   const userList = _.map(users, user => (
     <li className="user-list__user" key={user.id}>
-      <span title={user.login}>
-        <UserAvatar imageUrl={user.avatar_url}/>
-      </span>
+      <UserAvatar imageUrl={user.avatar_url}/>
+      <span className="user-list__name">{user.login}</span>
     </li>
   ))
   return (
