@@ -15,12 +15,13 @@ import reducers from "./reducers/index"
 import Root from "./containers/root.jsx"
 import { initUserSocket } from "./actions/user-socket"
 
-const loggerMiddleware = createLogger()
+let middleware = [thunkMiddleware]
 
-const createStoreWithMiddleware = applyMiddleware(
-  thunkMiddleware,
-  loggerMiddleware
-)(createStore)
+if (process.env.NODE_ENV !== 'production') {
+  middleware.push(createLogger())
+}
+
+const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore)
 
 const store = createStoreWithMiddleware(reducers)
 
