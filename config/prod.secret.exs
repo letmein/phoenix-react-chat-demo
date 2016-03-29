@@ -9,9 +9,7 @@ config :retro, Retro.Endpoint,
 # Configure your database
 config :retro, Retro.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: System.get_env("DATABASE_USERNAME"),
-  password: System.get_env("DATABASE_PASSWORD"),
-  database: "retro_prod",
+  url: System.get_env("DATABASE_URL"),
   pool_size: 20
 
 config :retro, GitHub,
