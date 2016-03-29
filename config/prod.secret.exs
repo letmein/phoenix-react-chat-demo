@@ -13,3 +13,8 @@ config :retro, Retro.Repo,
   password: System.get_env("DATABASE_PASSWORD"),
   database: "retro_prod",
   pool_size: 20
+
+config :retro, GitHub,
+  client_id:     System.get_env("GITHUB_CLIENT_ID"),
+  client_secret: System.get_env("GITHUB_CLIENT_SECRET"),
+  redirect_uri:  System.get_env("GITHUB_REDIRECT_URI")
