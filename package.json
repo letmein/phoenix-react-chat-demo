@@ -37,6 +37,7 @@
   },
   "scripts": {
     "test": "mocha --compilers js:babel-core/register --recursive web/static/js/**/*.test.js",
-    "test:watch": "npm test -- --watch"
+    "test:watch": "npm test -- --watch",
+    "build-production": "webpack -p --define process.env.NODE_ENV='\"production\"' --progress --colors"
   }
 }
