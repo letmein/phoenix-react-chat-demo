@@ -12,7 +12,7 @@ require("normalize.css/normalize.css")
 require("app.scss")
 
 import reducers from "./reducers/index"
-import Root from "./containers/root.jsx"
+import { Root } from "./containers"
 import { initUserSocket } from "./actions/user-socket"
 
 let middleware = [thunkMiddleware]

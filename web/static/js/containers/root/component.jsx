@@ -2,9 +2,9 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import _ from "lodash"
 
-import { CurrentUser, LoginLink, UserList, MessageList, ChatInput, Autoscroller } from "../components"
+import { CurrentUser, LoginLink, UserList, MessageList, ChatInput, Autoscroller } from "../../components"
 
-import { sendMessage } from "../actions/messages"
+import { sendMessage } from "../../actions/messages"
 
 class Root extends Component {
   createOnSubmit() {
