@@ -34,34 +34,4 @@
     max-width: 800px;
     overflow: hidden;
   }
-
-  &__sidebar {
-    display: flex;
-    flex: 1 0 auto;
-    background-color: #cccc99;
-  }
-
-  &__messages {
-    display: flex;
-    flex: 3 0 auto;
-    overflow: hidden;
-    flex-flow: column;
-    max-width: 600px;
-    background-color: #ffffcc;
-  }
-
-  &__message-list {
-    flex: 1 1 auto;
-    overflow: scroll;
-    display: flex;
-    flex-flow: column;
-    height: 0;
-  }
-
-  &__message-input {
-    flex: 0 0 auto;
-    height: 60px;
-    padding: 16px;
-    display: flex;
-  }
 }

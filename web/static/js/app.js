@@ -12,7 +12,7 @@ require("normalize.css/normalize.css")
 require("app.scss")
 
 import reducers from "./reducers/index"
-import { Root } from "./containers"
+import { Root, Chat } from "./containers"
 import { initUserSocket } from "./actions/user-socket"
 
 let middleware = [thunkMiddleware]
@@ -37,6 +37,7 @@ render(
   <Provider store={store}>
     <Router history={history}>
       <Route path="/" component={Root}>
+        <IndexRoute component={Chat}/>
       </Route>
     </Router>
   </Provider>,
