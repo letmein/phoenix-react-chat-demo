@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React from "react"
 import { connect } from "react-redux"
 import _ from "lodash"
 
@@ -6,33 +6,28 @@ import { UserList, MessageList, ChatInput, Autoscroller } from "../../components
 
 import { sendMessage } from "../../actions/messages"
 
-class Chat extends Component {
-  createOnSubmit() {
-    const { dispatch, currentUser, channel } = this.props
-    return function(text) {
-      dispatch(sendMessage(channel, currentUser, text))
-    }
-  };
+const Chat = (props) => {
+  const { currentUser, usersOnline, messages, channel, dispatch } = props
 
-  render() {
-    const { currentUser, usersOnline, messages } = this.props
+  const onSubmit = (text) => {
+    dispatch(sendMessage(channel, currentUser, text))
+  }
 
-    return (
-      <div className="chat">
-        <div className="chat__sidebar">
-          <UserList users={usersOnline} />
-        </div>
-        <div className="chat__main">
-          <Autoscroller className="chat__message-list">
-            <MessageList messages={messages}/>
-          </Autoscroller>
-          <div className="chat__message-input">
-            <ChatInput onSubmit={this.createOnSubmit()}/>
-          </div>
+  return (
+    <div className="chat">
+      <div className="chat__sidebar">
+        <UserList users={usersOnline} />
+      </div>
+      <div className="chat__main">
+        <Autoscroller className="chat__message-list">
+          <MessageList messages={messages}/>
+        </Autoscroller>
+        <div className="chat__message-input">
+          <ChatInput onSubmit={onSubmit}/>
         </div>
       </div>
-    )
-  }
+    </div>
+  )
 }
 
 function mapStateToProps(state) {
