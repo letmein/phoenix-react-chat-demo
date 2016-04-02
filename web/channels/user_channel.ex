@@ -5,15 +5,15 @@ defmodule Retro.UserChannel do
   intercept ["user-joined"]
 
   def join("users:lobby", payload, socket) do
-    Retro.SetRegistry.put(:online, socket.assigns.user_id)
-    messages = Retro.SizedStackRegistry.all(:messages)
-    online   = Retro.SetRegistry.all(:online)
-    response = %{
-      users:           all_users(messages, online),
-      messages:        messages,
-      online_user_ids: online
-    }
     if authorized?(payload) do
+      Retro.SetRegistry.put(:online, socket.assigns.user_id)
+      messages = Retro.SizedStackRegistry.all(:messages)
+      online   = Retro.SetRegistry.all(:online)
+      response = %{
+        users:           all_users(messages, online),
+        messages:        messages,
+        online_user_ids: online
+      }
       {:ok, response, socket}
     else
       {:error, %{reason: "unauthorized"}}
