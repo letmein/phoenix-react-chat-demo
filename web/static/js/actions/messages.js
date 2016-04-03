@@ -1,7 +1,18 @@
 import { createAction } from "redux-actions"
 import * as uuid from "node-uuid"
+import _ from "lodash"
 
 import * as ActionTypes from "../action-types"
+
+export const startTyping = createAction(ActionTypes.START_TYPING)
+export const finishTyping = createAction(ActionTypes.FINISH_TYPING)
+
+export function reportTyping(user) {
+  return dispatch => {
+    dispatch(startTyping(user.id))
+    _.delay(() => dispatch(finishTyping(user.id)), 1000)
+  }
+}
 
 export const sendMessageRequest = createAction(ActionTypes.SEND_MESSAGE_REQUEST)
 export const sendMessageSuccess = createAction(ActionTypes.SEND_MESSAGE_SUCCESS)

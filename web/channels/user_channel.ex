@@ -2,7 +2,7 @@ defmodule Retro.UserChannel do
   use Retro.Web, :channel
   import Ecto.Query
 
-  intercept ["user-joined"]
+  intercept ["user-joined", "user-typing"]
 
   def join("users:lobby", payload, socket) do
     if authorized?(payload) do
@@ -26,6 +26,11 @@ defmodule Retro.UserChannel do
     {:noreply, socket}
   end
 
+  def handle_in("user-typing", user, socket) do
+    broadcast socket, "user-typing", user
+    {:noreply, socket}
+  end
+
   def handle_in("message-sent", payload, socket) do
     Retro.SizedStackRegistry.put(:messages, payload)
     broadcast socket, "message-received", payload
@@ -35,6 +40,13 @@ defmodule Retro.UserChannel do
   def handle_out("user-joined", user, socket) do
     unless user.id == socket.assigns.user_id do
       push socket, "user-joined", user
+    end
+    {:noreply, socket}
+  end
+
+  def handle_out("user-typing", user, socket) do
+    unless user["id"] == socket.assigns.user_id do
+      push socket, "user-typing", user
     end
     {:noreply, socket}
   end

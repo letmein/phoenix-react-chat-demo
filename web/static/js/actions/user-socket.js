@@ -4,7 +4,7 @@ import { createAction } from "redux-actions"
 import * as ActionTypes from "../action-types"
 import { updateEntities } from "./entities"
 import { goOnline, goOffline } from "./online"
-import { receiveMessage } from "./messages"
+import { receiveMessage, reportTyping } from "./messages"
 
 export const openUserSocket     = createAction(ActionTypes.OPEN_USER_SOCKET)
 export const closeUserSocket    = createAction(ActionTypes.CLOSE_USER_SOCKET)
@@ -55,6 +55,10 @@ export function initLobbyChannel(socket, userId) {
 
     channel.on("user-left", user => {
       dispatch(goOffline(user.id))
+    })
+
+    channel.on("user-typing", user => {
+      dispatch(reportTyping(user))
     })
 
     channel.on("message-received", message => {
