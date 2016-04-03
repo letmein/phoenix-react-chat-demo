@@ -1,6 +1,7 @@
 {
   "repository": {},
   "dependencies": {
+    "classnames": "^2.2.3",
     "lodash": "^4.6.1",
     "moment": "^2.12.0",
     "node-uuid": "^1.4.7",
