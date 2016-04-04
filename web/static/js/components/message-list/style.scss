@@ -9,8 +9,10 @@
   &__message {
     flex: 0 0 auto;
     list-style: none;
-    color: #003300;
     margin: 0 16px 8px 16px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    color: #333300;
   }
 
   &__message-body {
@@ -25,11 +27,16 @@
     font-weight: bold;
     line-height: 32px;
     padding-left: 8px;
-    font-family: Arial, Helvetica, sans-serif;
+    padding-right: 8px;
   }
 
   &__avatar {
     float: left;
     line-height: 32px;
+  }
+
+  &__time {
+    color: #cccc99;
+    font-size: 13px;
   }
 }

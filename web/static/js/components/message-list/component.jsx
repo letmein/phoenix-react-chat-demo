@@ -5,8 +5,7 @@ import moment from "moment"
 import { UserAvatar } from ".." 
 
 
-function TimeStamp(props) {
-  const { value, className } = props
+function TimeStamp({ value, className }) {
   const formatted = moment(value).format("llll")
   return (<span className={className}>{formatted}</span>)
 }
@@ -17,8 +16,7 @@ export default (props) => {
     <li className="message-list__message" key={message.id}>
       <UserAvatar imageUrl={message.user.avatar_url} className="message-list__avatar"/>
       <span className="message-list__username">{message.user.login}</span>
-      @
-      <TimeStamp className="message-list_time" value={message.sent_at}/>
+      <TimeStamp className="message-list__time" value={message.sent_at}/>
       <br/>
       <span className="message-list__message-body">{message.text}</span>
     </li>
