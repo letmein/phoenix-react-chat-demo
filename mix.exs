@@ -3,8 +3,8 @@ defmodule Retro.Mixfile do
 
   def project do
     [app: :retro,
-     version: "0.0.1",
-     elixir: "~> 1.0",
+     version: "0.0.2",
+     elixir: "~> 1.3.4",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
@@ -30,14 +30,14 @@ defmodule Retro.Mixfile do
   #
   # Type `mix help deps` for examples and options.
   defp deps do
-    [{:phoenix, "~> 1.1.4"},
-     {:phoenix_ecto, "~> 2.0"},
-     {:postgrex, "~> 0.11.0"},
-     {:phoenix_html, "~> 2.3"},
+    [{:phoenix, "~> 1.2.4"},
+     {:phoenix_ecto, "~> 3.2.3"},
+     {:postgrex, "~> 0.13.3"},
+     {:phoenix_html, "~> 2.9.3"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:gettext, "~> 0.9"},
-     {:cowboy, "~> 1.0"},
-     {:oauth2, "~> 0.5"}]
+     {:gettext, "~> 0.13.1"},
+     {:cowboy, "~> 1.1.2"},
+     {:oauth2, "~> 0.9.1"}]
   end
 
   # Aliases are shortcut or tasks specific to the current project.
