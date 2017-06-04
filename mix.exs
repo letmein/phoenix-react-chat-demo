@@ -4,13 +4,13 @@ defmodule Retro.Mixfile do
   def project do
     [app: :retro,
      version: "0.0.2",
-     elixir: "~> 1.3.4",
+     elixir: "~> 1.4.0",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
-     aliases: aliases,
-     deps: deps]
+     aliases: aliases(),
+     deps: deps()]
   end
 
   # Configuration for the OTP application.
