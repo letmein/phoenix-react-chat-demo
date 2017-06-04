@@ -1,10 +1,6 @@
 defmodule Retro.AuthController do
   use Retro.Web, :controller
 
-  require Logger
-  
-  alias Retro.Repo
-  alias Retro.User
   alias Retro.SaveAuthenticatedUser
 
   def index(conn, %{"provider" => provider}) do
@@ -28,7 +24,7 @@ defmodule Retro.AuthController do
     conn
     |> put_session(:current_user_id, user.id)
     |> put_session(:user_token, user_token)
-    |> put_session(:oauth_access_token, oauth_token.access_token)
+    |> put_session(:oauth_access_token, oauth_token.token.access_token)
     |> redirect(to: "/")
   end
 
@@ -39,7 +35,7 @@ defmodule Retro.AuthController do
   defp get_token!(_, _), do: raise "No matching provider available"
 
   defp get_user!("github", token) do
-    {:ok, %{body: user}} = OAuth2.AccessToken.get(token, "/user")
+    user = OAuth2.Client.get!(token, "/user").body
     %{
       name:       user["name"],
       avatar_url: user["avatar_url"],
