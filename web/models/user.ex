@@ -15,7 +15,7 @@ defmodule Retro.User do
     field :email, :string
     field :avatar_url, :string
 
-    timestamps
+    timestamps()
   end
 
   @required_fields ~w(login)
