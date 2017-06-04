@@ -42,7 +42,4 @@ config :retro, Retro.Repo,
   hostname:  "localhost",
   pool_size: 10
 
-config :retro, GitHub,
-  client_id:     System.get_env("GITHUB_CLIENT_ID"),
-  client_secret: System.get_env("GITHUB_CLIENT_SECRET"),
-  redirect_uri:  System.get_env("GITHUB_REDIRECT_URI")
+import_config "dev.secret.exs"
